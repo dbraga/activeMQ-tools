@@ -1,2 +1,7 @@
 .idea
 ActiveMq-Tools.iml
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
