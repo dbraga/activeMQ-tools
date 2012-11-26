@@ -29,20 +29,12 @@ public class Consumer implements MessageListener {
         connection.setClientID("unique_client_id_123");
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         Topic dest = session.createTopic(topicName);
-//        MessageConsumer consumer = session.createConsumer(dest);
         MessageConsumer consumer = session.createDurableSubscriber(dest, "this_is_a_unique_id_12345");
         consumer.setMessageListener(listener);
         connection.start();
     }
 
     public static void main(String[] args) throws JMSException {
-//        if (args.length != 2) {
-//            logger.error("incorrect args given. usage: " + QueueLogger.class.getSimpleName() + " <broker host:port> <queue name>");
-//        }
-
-//        String brokerUrl = args[0];
-//        String queueName = args[1];
-
         MessageListener consumer = new Consumer();
         Consumer.listenToTopic(activeMqBrokerUrl, topicName,consumer);
 
